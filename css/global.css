@@ -48,6 +48,7 @@ button {
   border-radius: 20px;
   color: white;
   padding: 7px 13px;
+  margin: 3px 5px;
 }
 
 button.sign-up {
@@ -59,17 +60,19 @@ button.log-in {
   border-color: darkred;
 }
 
-/* nav bar shop options */
 nav.shop-options {
   background-color: white;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .logo {
   height: 18px;
+  margin-right: 50px;
 }
 
 nav.options > h3 {
-  padding: 0px 10px;
+  padding: 10px 5px;
   color: darkred;
   font-size: small;
   font-weight: lighter;
@@ -80,8 +83,12 @@ nav.options > h3 {
 div.banner {
   display: flex;
   height: 400px;
+  width: 100%;
   background-image: url("../resources/images/banner.jpg");
-  align-items: end;
+  align-items: flex-end;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 button.more-information {
@@ -97,6 +104,9 @@ div.filter {
   background-color: #ececec;
   width: 100%;
   padding: 10px 0px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 div.filter > div {
@@ -104,6 +114,10 @@ div.filter > div {
 }
 
 div.city-filter {
+  padding-left: 9%;
+  padding-right: 30px;
+}
+div.local-filter {
   padding-left: 9%;
   padding-right: 30px;
 }
@@ -172,10 +186,14 @@ div.movie-list div.poster-container button {
 /* footer */
 footer {
   display: grid;
-  grid-template-columns: 15% 15% 15% auto 30%;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   background-color: #ececec;
-  padding-left: 6%;
-  padding-bottom: 50px;
+  padding: 20px;
+}
+
+footer div {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 footer div h2 {
@@ -188,7 +206,19 @@ footer div h3 {
   font-size: smaller;
 }
 
+footer div.apps {
+  display: flex;
+  justify-content: center;
+}
+
 footer div.apps > img {
   height: 17px;
-  margin: 3% 10px;
+  margin: 0 10px;
+}
+
+/* Media Query para pantallas más pequeñas (ajusta según sea necesario) */
+@media (max-width: 768px) {
+  footer {
+    grid-template-columns: 1fr;
+  }
 }
