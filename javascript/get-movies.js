@@ -9,3 +9,4 @@ export const get_movies = async () => {
     throw error;
   }
 };
+export default get_movies;

@@ -1,4 +1,4 @@
-import { get_movies } from "../javascript/get-movies.js";
+import  get_movies  from "../javascript/get-movies.js";
 import { OPTIONS, API_URL } from "../javascript/constants.js";
 import "jest";
 
