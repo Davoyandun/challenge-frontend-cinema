@@ -5,17 +5,26 @@
   "description": "This is the application to test the knowledge gained in the first module of the ioet university 2.0.",
   "main": "index.js",
   "directories": {
-    "test": "test"
+    "test": "npm run test"
   },
   "scripts": {
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
+    "test": "jest"
   },
   "jest": {
-    "transform": {}
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/test/**/*.test.js"
+    ],
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    }
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.23.7",
+    "@babel/preset-env": "^7.23.8",
+    "babel-jest": "^26.6.3",
     "jest": "^29.6.4"
   }
 }
