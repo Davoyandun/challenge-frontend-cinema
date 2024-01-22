@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/global.css" />
-    <title>Cinemark</title>
-    <!-- icono  -->
+    <link rel="stylesheet" href="../css/movie.css" />
+    <title>movie</title>
     <link rel="icon" href="../resources/icons/cinemark.svg" />
-    <script src="../javascript/get-movies.js" type="module"></script>
+    <script src="../javascript/get_movie.js" type="module"></script>
     <script src="../javascript/utils/utils.js" type="module"></script>
     <script src="../javascript/constants.js" type="module"></script>
   </head>
@@ -27,11 +27,10 @@
         </div>
       </nav>
       <nav class="shop-options">
-        <img
-          class="logo"
-          src="../resources/images/cinemark_logo.png"
-          href="index.html"
-        />
+        <a href="index.html">
+          <img class="logo" src="../resources/images/cinemark_logo.png" />
+        </a>
+
         <nav class="options">
           <h3>Billboard</h3>
           <h3>Theaters</h3>
@@ -64,8 +63,25 @@
       </div>
     </div>
 
-    <h1>Billboard</h1>
-    <div class="movie-list" id="movie-list"></div>
+    <h1 id="movie-title"></h1>
+    <div class="movie-list" id="movie-list">
+      <div class="movie-details">
+        <div id="movie-image"></div>
+        <div class="movie-info">
+          <h4>Name</h4>
+          <p id="movie-name"></p>
+          <hr class="dashed-line" />
+          <h4>Genres</h4>
+          <p id="movie-genres"></p>
+          <hr class="dashed-line" />
+          <h4>Sinopsis</h4>
+          <p id="movie-plot"></p>
+          <hr class="dashed-line" />
+          <h4>Duration</h4>
+          <p id="movie-duration"></p>
+        </div>
+      </div>
+    </div>
     <footer>
       <div class="about-us">
         <h2>About</h2>
@@ -91,28 +107,37 @@
     </footer>
 
     <script type="module">
-      import get_movies from "../javascript/get-movies.js";
+      import get_movie from "../javascript/get_movie.js";
       import { createImag } from "../javascript/utils/utils.js";
 
-      get_movies().then((data) => {
-        data.map((movie) => {
-          const container = document.createElement("div");
-          container.className = "poster-container";
-          const imgElement = createImag(movie);
-          container.appendChild(imgElement);
+      const showMovieDetails = (movie) => {
+        const imageContainer = document.getElementById("movie-image");
+        const imgElement = createImag(movie);
+        imageContainer.appendChild(imgElement);
 
-          const buttonElement = document.createElement("button");
-          buttonElement.textContent = "View";
-          buttonElement.className = "schedules";
-          buttonElement.setAttribute("data-movie-id", movie.id);
-          buttonElement.addEventListener("click", () => {
-            window.location.href = `./movie.html?movieId=${movie.id}`;
-          });
-          container.appendChild(buttonElement);
+        const titleElement = document.getElementById("movie-title");
+        const movieNameElement = document.getElementById("movie-name");
+        titleElement.textContent = movie.titleText.text;
+        movieNameElement.textContent = movie.titleText.text;
 
-          const element = document.getElementById("movie-list");
-          element.appendChild(container);
-        });
+        const durationElement = document.getElementById("movie-duration");
+        durationElement.textContent = `${movie.runtime.seconds / 60} minutes`;
+
+        const genresElement = document.getElementById("movie-genres");
+        const genres = movie.genres.genres
+          .map((genre) => genre.text)
+          .join(", ");
+        genresElement.textContent = `${genres}`;
+
+        const plotElement = document.getElementById("movie-plot");
+        plotElement.textContent = `${movie.plot.plotText.plainText}`;
+      };
+
+      const movieId = new URLSearchParams(window.location.search).get(
+        "movieId"
+      );
+      get_movie(movieId).then((data) => {
+        showMovieDetails(data);
       });
     </script>
   </body>
