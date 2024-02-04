@@ -1,7 +1,6 @@
 export const API_URL =
-  // movies return 0 results
-  // I will use series instead
-  "https://moviesdatabase.p.rapidapi.com/titles/random?list=most_pop_series";
+
+  "https://moviesdatabase.p.rapidapi.com/titles/random?list=top_rated_english_250";
 export const API_MOVIE_ID_URL = "https://moviesdatabase.p.rapidapi.com/titles/";
 export const OPTIONS = {
   method: "GET",

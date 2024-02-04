@@ -1,4 +1,4 @@
-import { OPTIONS, API_URL } from "./constants.js";
+import { OPTIONS, API_URL } from "../utils/constants.js";
 
 export const get_movies = async () => {
   try {

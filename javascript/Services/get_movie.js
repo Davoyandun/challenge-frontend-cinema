@@ -1,4 +1,4 @@
-import { OPTIONS, API_MOVIE_ID_URL } from "./constants.js";
+import { OPTIONS, API_MOVIE_ID_URL } from "../utils/constants.js";
 
 export const get_movie = async (id) => {
   try {
